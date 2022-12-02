@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 @Component
 public class MovieRepository {
 
-    private HashMap<String, Movie> movieMap ;
-    private HashMap<String, Director> directorMap ;
-    private HashMap<String, List<String>> directormovieMap ;
+    private HashMap<String, Movie> movieMap = new HashMap<>() ;
+    private HashMap<String, Director> directorMap = new HashMap<>() ;
+    private HashMap<String, List<String>> directormovieMap = new HashMap<>() ;
     
     public void addMovie(Movie movie)
     {
@@ -48,7 +48,12 @@ public class MovieRepository {
 
     public List<String> getMovieByDirectorName(String director)
     {
-        return directormovieMap.get(director) ;
+        List<String> moviesList = new ArrayList<String>();
+
+        if(directormovieMap.containsKey(director)) 
+        moviesList = directormovieMap.get(director);
+
+        return moviesList;
     }
  
     public List<String> findAllMovies()
